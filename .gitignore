@@ -1,0 +1,50 @@
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Dependencies and caches
+node_modules/
+__pycache__/
+.pytest_cache/
+pytest-cache-files-*/
+.tmp_test/
+tmp/
+_deploy_tmp/
+
+# Generated deployment/build output
+dist/
+
+# Databases and exported respondent data
+*.db
+*.sqlite
+*.sqlite3
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+*.sav
+*.dta
+
+# Documents and analysis outputs not required for the public survey site
+output/
+outputs-*/
+Mixed_Logit_Forest_Plot*/
+simulated_CE_analysis_pretest_outputs/
+问卷设计项目汇总_*/
+问卷系统整理包/
+recovered_wechat/
+离散选择实验/
+人群异质性分析_*/
+
+# Temporary scripts used for server-side data repair/import
+tmp_*.cjs
+tmp_*.mjs
+scripts/run_new200_*.ps1
+scripts/survey_playwright_submit_*.mjs
+scripts/survey_submit_new200_*.mjs
+scripts/tencent_*.py
+
+# OS/editor files
+.DS_Store
+Thumbs.db
