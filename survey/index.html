@@ -250,12 +250,12 @@
       filter: drop-shadow(0 6px 10px rgba(20,34,45,.08));
     }
     .intro-visual.has-sheet-icon::after { display: none; }
-    .intro-visual.has-sheet-icon.part-1::before { background-image: url("/assets/section-icons/part-1.png"); }
-    .intro-visual.has-sheet-icon.part-2::before { background-image: url("/assets/section-icons/part-2.png"); }
-    .intro-visual.has-sheet-icon.part-3::before { background-image: url("/assets/section-icons/part-3.png"); }
-    .intro-visual.has-sheet-icon.part-4::before { background-image: url("/assets/section-icons/part-4.png"); }
-    .intro-visual.has-sheet-icon.part-5::before { background-image: url("/assets/section-icons/part-5.png"); }
-    .intro-visual.has-sheet-icon.part-6::before { background-image: url("/assets/section-icons/part-6.png"); }
+    .intro-visual.has-sheet-icon.part-1::before { background-image: url("../assets/section-icons/part-1.png"); }
+    .intro-visual.has-sheet-icon.part-2::before { background-image: url("../assets/section-icons/part-2.png"); }
+    .intro-visual.has-sheet-icon.part-3::before { background-image: url("../assets/section-icons/part-3.png"); }
+    .intro-visual.has-sheet-icon.part-4::before { background-image: url("../assets/section-icons/part-4.png"); }
+    .intro-visual.has-sheet-icon.part-5::before { background-image: url("../assets/section-icons/part-5.png"); }
+    .intro-visual.has-sheet-icon.part-6::before { background-image: url("../assets/section-icons/part-6.png"); }
     .part-2::before, .part-5::before { border-color: rgba(222,139,73,.72); }
     .part-4::before, .part-6::before { border-color: rgba(98,113,123,.55); }
     .intro-copy { display: grid; gap: 6px; }
@@ -681,7 +681,7 @@
       min-height: 260px;
       background:
         linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.14)),
-        url("/assets/cover-end/cover.png") center center / cover no-repeat,
+        url("../assets/cover-end/cover.png") center center / cover no-repeat,
         #f5f7f7;
     }
     .hero-copy {
@@ -823,7 +823,7 @@
       min-height: 258px;
       background:
         linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.16)),
-        url("/assets/cover-end/end-v2.png") center center / contain no-repeat;
+        url("../assets/cover-end/end-v2.png") center center / contain no-repeat;
       border: 0;
       box-shadow: none;
     }
@@ -2521,12 +2521,12 @@ const PLAN_ASSETS = {
 };
 
 const PLAN_ORIGINAL_ASSETS = {
-  low_keep: "/assets/plans/low-keep-square.jpg",
-  low_none: "/assets/plans/low-none-square.jpg",
-  mid_keep: "/assets/plans/mid-keep-square.jpg",
-  mid_none: "/assets/plans/mid-none-square.jpg",
-  high_keep: "/assets/plans/high-keep-square.jpg",
-  high_none: "/assets/plans/high-none-square.jpg"
+  low_keep: "../assets/plans/low-keep-square.jpg",
+  low_none: "../assets/plans/low-none-square.jpg",
+  mid_keep: "../assets/plans/mid-keep-square.jpg",
+  mid_none: "../assets/plans/mid-none-square.jpg",
+  high_keep: "../assets/plans/high-keep-square.jpg",
+  high_none: "../assets/plans/high-none-square.jpg"
 };
 
 const RENDER_ASSETS = {
@@ -2536,15 +2536,15 @@ const RENDER_ASSETS = {
 };
 
 const RENDER_ORIGINAL_ASSETS = {
-  low: "/assets/renders/low-density-render.png",
-  mid: "/assets/renders/mid-density-render.png",
-  high: "/assets/renders/high-density-render.png"
+  low: "../assets/renders/low-density-render.png",
+  mid: "../assets/renders/mid-density-render.png",
+  high: "../assets/renders/high-density-render.png"
 };
 
 const TYPE_META = {
-  daily: { label: "日常服务为主", description: "以轻餐、补给、便民服务等日常性消费为主。", iconPath: "/assets/icons/1.png", fallback: "日", accent: "#4aa36e" },
-  balanced: { label: "均衡型", description: "日常服务与休闲体验并存，整体配置更均衡。", iconPath: "/assets/icons/3.png", fallback: "衡", accent: "#5d91e6" },
-  leisure: { label: "休闲体验为主", description: "以咖啡、文创、休憩停留等体验型业态为主。", iconPath: "/assets/icons/2.png", fallback: "休", accent: "#de8b49" }
+  daily: { label: "日常服务为主", description: "以轻餐、补给、便民服务等日常性消费为主。", iconPath: "../assets/icons/1.png", fallback: "日", accent: "#4aa36e" },
+  balanced: { label: "均衡型", description: "日常服务与休闲体验并存，整体配置更均衡。", iconPath: "../assets/icons/3.png", fallback: "衡", accent: "#5d91e6" },
+  leisure: { label: "休闲体验为主", description: "以咖啡、文创、休憩停留等体验型业态为主。", iconPath: "../assets/icons/2.png", fallback: "休", accent: "#de8b49" }
 };
 
 const SCHEMES = {
@@ -3163,7 +3163,7 @@ function renderCEWarmup() {
 }
 
 function renderCEScene() {
-  return `<section class="stage-card"><p class="scene-brief">您将完成 <strong>8 组“公园方案二选一”</strong>。每组方案略有差异，请根据个人偏好选择更愿意接受的一项。</p><p class="scene-question">想象一下，现在是一个天气很棒的周末下午。<br />面对下面的公园，你会更愿意走向哪一个？</p><div class="park-scene"><video class="scene-video" autoplay muted loop playsinline preload="auto"><source src="/assets/video/park-scene.mp4" type="video/mp4" /></video></div><div class="stage-actions"><button class="primary-button" type="button" data-role="ce-start">开始正式选择</button></div></section>`;
+  return `<section class="stage-card"><p class="scene-brief">您将完成 <strong>8 组“公园方案二选一”</strong>。每组方案略有差异，请根据个人偏好选择更愿意接受的一项。</p><p class="scene-question">想象一下，现在是一个天气很棒的周末下午。<br />面对下面的公园，你会更愿意走向哪一个？</p><div class="park-scene"><video class="scene-video" autoplay muted loop playsinline preload="auto"><source src="../assets/video/park-scene.mp4" type="video/mp4" /></video></div><div class="stage-actions"><button class="primary-button" type="button" data-role="ce-start">开始正式选择</button></div></section>`;
 }
 
 function ceTaskBarsMarkup(activeIndex) {
@@ -3708,8 +3708,8 @@ renderSection(false);
 setAppScreen(state.appScreen || "cover", false);
 
   </script>
-  <script src="/static/runtime-config.js"></script>
-  <script src="/static/survey_app.js"></script>
+  <script src="../static/runtime-config.js"></script>
+  <script src="../static/survey_app.js"></script>
 </body>
 </html>
 

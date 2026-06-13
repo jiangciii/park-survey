@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "build:github-pages": "python scripts/build_static_bundle.py --target github-pages --output dist/github-pages",
-    "build:cloudbase-static": "python scripts/build_static_bundle.py --target cloudbase --output dist/cloudbase-static"
-  },
-  "dependencies": {
-    "playwright-core": "^1.60.0"
-  }
-}
