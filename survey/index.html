@@ -96,6 +96,12 @@
       border: 1px solid rgba(255,255,255,.6);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.56);
     }
+    body[data-screen="cover"] .phone-shell,
+    body[data-screen="end"] .phone-shell,
+    body[data-screen="cover"] .phone-screen,
+    body[data-screen="end"] .phone-screen {
+      min-height: 0;
+    }
     .topbar {
       padding: 20px 18px 16px;
       border-bottom: 1px solid var(--line);
@@ -2314,6 +2320,16 @@
         box-shadow: none;
         backdrop-filter: none;
       }
+      body[data-screen="cover"] .app,
+      body[data-screen="end"] .app {
+        min-height: auto;
+      }
+      body[data-screen="cover"] .phone-shell,
+      body[data-screen="end"] .phone-shell,
+      body[data-screen="cover"] .phone-screen,
+      body[data-screen="end"] .phone-screen {
+        min-height: 0;
+      }
       .screen-overlay {
         padding: 18px 16px 16px;
       }
@@ -2335,6 +2351,12 @@
       .app { padding: 0; }
       .phone-shell { width: 100%; min-height: 100dvh; border-radius: 0; }
       .phone-screen { min-height: 100dvh; }
+      body[data-screen="cover"] .phone-shell,
+      body[data-screen="end"] .phone-shell,
+      body[data-screen="cover"] .phone-screen,
+      body[data-screen="end"] .phone-screen {
+        min-height: 0;
+      }
       .topbar-head {
         align-items: flex-start;
       }
@@ -2755,6 +2777,7 @@ function renderCompletionCode() {
 
 function setAppScreen(screen, shouldScroll = true) {
   state.appScreen = screen;
+  document.body.dataset.screen = screen;
   coverScreen.classList.toggle("active", screen === "cover");
   flowShell.classList.toggle("hidden", screen !== "flow");
   endScreen.classList.toggle("active", screen === "end");
