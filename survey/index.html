@@ -652,7 +652,7 @@
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .screen-overlay {
       display: none;
-      min-height: calc(100vh - 60px);
+      min-height: auto;
       padding: 20px 18px 18px;
       animation: fadeUp 320ms var(--ease);
     }
@@ -663,6 +663,7 @@
       grid-auto-rows: max-content;
       align-content: start;
       gap: 14px;
+      padding-bottom: 16px;
     }
     .cover-top-title {
       font-size: 1.58rem;
@@ -747,6 +748,8 @@
       grid-template-rows: auto auto auto auto;
       align-content: start;
       gap: 16px;
+      min-height: auto;
+      padding-bottom: 18px;
       background:
         radial-gradient(circle at 12% 14%, rgba(186,222,217,.16), transparent 24%),
         radial-gradient(circle at 88% 10%, rgba(233,168,106,.14), transparent 22%),
@@ -756,6 +759,7 @@
       grid-template-rows: auto auto auto auto;
       align-content: start;
       gap: 16px;
+      min-height: calc(100vh - 60px);
       background:
         radial-gradient(circle at 10% 12%, rgba(186,222,217,.18), transparent 24%),
         radial-gradient(circle at 90% 9%, rgba(93,145,230,.12), transparent 24%),
@@ -2311,8 +2315,11 @@
         backdrop-filter: none;
       }
       .screen-overlay {
-        min-height: 100dvh;
         padding: 18px 16px 16px;
+      }
+      .flow-shell .screen-overlay,
+      .info-screen {
+        min-height: 100dvh;
       }
       .cover-screen {
         gap: 13px;
