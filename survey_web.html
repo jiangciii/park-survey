@@ -659,8 +659,10 @@
     .screen-overlay.active { display: grid; }
     .flow-shell.hidden { display: none; }
     .cover-screen {
-      grid-template-rows: auto auto auto 1fr;
-      gap: 16px;
+      grid-template-rows: none;
+      grid-auto-rows: max-content;
+      align-content: start;
+      gap: 14px;
     }
     .cover-top-title {
       font-size: 1.58rem;
@@ -676,7 +678,7 @@
       box-shadow: var(--soft-shadow);
     }
     .hero-card {
-      min-height: 276px;
+      min-height: 260px;
       background:
         linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.14)),
         url("/assets/cover-end/cover.png") center center / cover no-repeat,
@@ -684,7 +686,8 @@
     }
     .hero-copy {
       display: grid;
-      gap: 10px;
+      gap: 12px;
+      align-content: start;
     }
     .hero-copy h1 {
       font-size: 1.12rem;
@@ -695,7 +698,7 @@
     .hero-copy .lead {
       color: var(--muted);
       font-size: .92rem;
-      line-height: 1.78;
+      line-height: 1.7;
     }
     .meta-row {
       display: flex;
@@ -726,6 +729,7 @@
       display: grid;
       gap: 12px;
     }
+    .cover-actions { margin-top: 4px; }
     .ethic-note,
     .action-meta,
     .contact-footnote {
@@ -2309,6 +2313,15 @@
       .screen-overlay {
         min-height: 100dvh;
         padding: 18px 16px 16px;
+      }
+      .cover-screen {
+        gap: 13px;
+      }
+      .hero-card {
+        min-height: clamp(210px, 52vw, 250px);
+      }
+      .hero-copy {
+        gap: 10px;
       }
     }
     @media (max-width: 420px) {
