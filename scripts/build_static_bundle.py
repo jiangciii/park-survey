@@ -2,6 +2,8 @@ import argparse
 import shutil
 from pathlib import Path
 
+HIDDEN_ADMIN_SUMMARY_PATH = "admin-summary-x7k29"
+
 
 def write_runtime_config(
     target: Path,
@@ -81,9 +83,11 @@ def write_github_pages_bundle(root: Path, output: Path, public_base_url: str):
     static_dir = output / "static"
     assets_dir = output / "assets"
     survey_dir = output / "survey"
+    admin_summary_dir = output / HIDDEN_ADMIN_SUMMARY_PATH
 
     static_dir.mkdir(parents=True, exist_ok=True)
     survey_dir.mkdir(parents=True, exist_ok=True)
+    admin_summary_dir.mkdir(parents=True, exist_ok=True)
 
     html = (root / "survey_web.html").read_text(encoding="utf-8")
     (output / "index.html").write_text(
@@ -106,7 +110,12 @@ def write_github_pages_bundle(root: Path, output: Path, public_base_url: str):
     )
 
     copy_tree(root / "assets", assets_dir)
+    shutil.copy2(root / "admin_summary_static.html", admin_summary_dir / "index.html")
     (output / ".nojekyll").write_text("", encoding="utf-8")
+    (output / "robots.txt").write_text(
+        f"User-agent: *\nDisallow: /{HIDDEN_ADMIN_SUMMARY_PATH}/\n",
+        encoding="utf-8",
+    )
     shutil.copy2(output / "index.html", output / "404.html")
 
 
