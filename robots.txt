@@ -1,0 +1,2 @@
+User-agent: *
+Disallow: /admin-summary-x7k29/

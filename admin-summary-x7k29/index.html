@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow,noarchive" />
+  <title>城市公园问卷汇总后台</title>
+  <style>
+    :root {
+      --bg: #edf2f4;
+      --panel: rgba(255, 255, 255, .88);
+      --panel-strong: #fff;
+      --text: #17303d;
+      --muted: #647481;
+      --line: rgba(73, 95, 107, .14);
+      --accent: #2f7f79;
+      --blue: #5d91e6;
+      --orange: #de8b49;
+      --green: #2f9f79;
+      --ink: #29465c;
+      --soft-shadow: 0 18px 38px rgba(20, 34, 45, .09);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at 8% 6%, rgba(93,145,230,.18), transparent 28%),
+        radial-gradient(circle at 92% 16%, rgba(222,139,73,.14), transparent 24%),
+        radial-gradient(circle at 88% 86%, rgba(47,127,121,.18), transparent 28%),
+        linear-gradient(145deg, rgba(255,255,255,.78), rgba(237,242,244,.98)),
+        var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 54px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--soft-shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero {
+      padding: 26px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 22px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(47,127,121,.12);
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 14px 0 0;
+      font-size: clamp(1.85rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      color: var(--ink);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+
+    .hero-meta {
+      display: grid;
+      gap: 10px;
+      min-width: 220px;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid var(--line);
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .meta-item strong { color: var(--text); }
+
+    .section { margin-top: 18px; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .stat-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.92), rgba(255,255,255,.68)),
+        var(--panel-strong);
+      border: 1px solid rgba(73,95,107,.1);
+      box-shadow: 0 12px 26px rgba(20,34,45,.06);
+    }
+
+    .stat-card h3 {
+      margin: 0;
+      color: var(--muted);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    .stat-value {
+      margin-top: 10px;
+      font-size: clamp(1.7rem, 4vw, 2.35rem);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      color: var(--ink);
+    }
+
+    .stat-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.55;
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 14px;
+    }
+
+    .block {
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: var(--soft-shadow);
+    }
+
+    .block-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .block-title h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--ink);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 11px;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(47,127,121,.11);
+      white-space: nowrap;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(73,95,107,.09);
+    }
+
+    .check-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--green), #7bc6a6);
+      box-shadow: 0 0 0 5px rgba(47,159,121,.11);
+    }
+
+    .check-row span { color: var(--muted); }
+    .check-row strong { color: var(--text); }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .chart-card {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(73,95,107,.09);
+    }
+
+    .chart-card h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 96px 1fr 58px;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .bar-track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(73,95,107,.1);
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+    }
+
+    .bar-row strong {
+      color: var(--text);
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .notice {
+      padding: 18px 20px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .notice strong { color: var(--text); }
+
+    @media (max-width: 860px) {
+      .hero,
+      .quality-grid,
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page { padding: 16px 12px 36px; }
+      .hero,
+      .block { padding: 18px; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .bar-row { grid-template-columns: 86px 1fr 48px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="panel hero">
+      <div>
+        <span class="eyebrow">Research Summary</span>
+        <h1>城市公园使用体验调研<br />汇总后台</h1>
+        <p>本页是 GitHub Pages 上的静态汇总版后台，仅展示最终有效样本的聚合指标，不包含 respondent_id、单份答卷、CE 明细或任何可识别个人级记录。</p>
+      </div>
+      <aside class="hero-meta">
+        <div class="meta-item"><span>数据版本</span><strong>388-2 正确版</strong></div>
+        <div class="meta-item"><span>快照时间</span><strong>2026-05-25</strong></div>
+        <div class="meta-item"><span>页面类型</span><strong>隐藏静态页</strong></div>
+      </aside>
+    </section>
+
+    <section class="section stats-grid">
+      <article class="stat-card">
+        <h3>有效样本数</h3>
+        <div class="stat-value">388</div>
+        <p class="stat-note">最终纳入分析口径的完整问卷。</p>
+      </article>
+      <article class="stat-card">
+        <h3>完整答卷数</h3>
+        <div class="stat-value">388</div>
+        <p class="stat-note">completed = 1，完整率 100%。</p>
+      </article>
+      <article class="stat-card">
+        <h3>CE 选择记录</h3>
+        <div class="stat-value">3104</div>
+        <p class="stat-note">388 位受访者 × 8 组任务。</p>
+      </article>
+      <article class="stat-card">
+        <h3>平均作答时长</h3>
+        <div class="stat-value">8分00秒</div>
+        <p class="stat-note">中位作答时长 7分12秒。</p>
+      </article>
+    </section>
+
+    <section class="section quality-grid">
+      <article class="block">
+        <div class="block-title">
+          <h2>数据完整性检查</h2>
+          <span class="pill">全部通过</span>
+        </div>
+        <div class="check-list">
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>每位受访者 CE 任务数</span>
+            <strong>8 / 8</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>CE 映射校验 mapping_check</span>
+            <strong>3104 / 3104 OK</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>respondents 与 ce_choices 匹配</span>
+            <strong>388 / 388</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>最短整份作答时长</span>
+            <strong>4分00秒</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="block">
+        <div class="block-title">
+          <h2>记录范围</h2>
+          <span class="pill">仅汇总</span>
+        </div>
+        <div class="check-list">
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>提交时间范围</span>
+            <strong>2026-05-07 至 2026-05-22</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>CE 中位反应时均值</span>
+            <strong>12秒</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>单题最短 CE 反应时</span>
+            <strong>≥ 2秒</strong>
+          </div>
+          <div class="check-row">
+            <span class="check-dot"></span>
+            <span>静态页隐私处理</span>
+            <strong>不发布明细</strong>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section block">
+      <div class="block-title">
+        <h2>样本结构概览</h2>
+        <span class="pill">聚合分布</span>
+      </div>
+      <div class="chart-grid">
+        <article class="chart-card">
+          <h3>常去公园类型</h3>
+          <div class="bar-row"><span>社区型</span><div class="bar-track"><div class="bar-fill" style="width:44.1%"></div></div><strong>171</strong></div>
+          <div class="bar-row"><span>生态型</span><div class="bar-track"><div class="bar-fill" style="width:22.4%"></div></div><strong>87</strong></div>
+          <div class="bar-row"><span>综合型</span><div class="bar-track"><div class="bar-fill" style="width:21.4%"></div></div><strong>83</strong></div>
+          <div class="bar-row"><span>专类型</span><div class="bar-track"><div class="bar-fill" style="width:9.5%"></div></div><strong>37</strong></div>
+          <div class="bar-row"><span>不确定</span><div class="bar-track"><div class="bar-fill" style="width:2.6%"></div></div><strong>10</strong></div>
+        </article>
+
+        <article class="chart-card">
+          <h3>CE 联想对象</h3>
+          <div class="bar-row"><span>综合型</span><div class="bar-track"><div class="bar-fill" style="width:28.9%"></div></div><strong>112</strong></div>
+          <div class="bar-row"><span>社区型</span><div class="bar-track"><div class="bar-fill" style="width:28.4%"></div></div><strong>110</strong></div>
+          <div class="bar-row"><span>生态型</span><div class="bar-track"><div class="bar-fill" style="width:20.1%"></div></div><strong>78</strong></div>
+          <div class="bar-row"><span>专类型</span><div class="bar-track"><div class="bar-fill" style="width:15.7%"></div></div><strong>61</strong></div>
+          <div class="bar-row"><span>凭感觉</span><div class="bar-track"><div class="bar-fill" style="width:7.0%"></div></div><strong>27</strong></div>
+        </article>
+
+        <article class="chart-card">
+          <h3>公园消费经历</h3>
+          <div class="bar-row"><span>偶尔消费</span><div class="bar-track"><div class="bar-fill" style="width:66.5%"></div></div><strong>258</strong></div>
+          <div class="bar-row"><span>经常消费</span><div class="bar-track"><div class="bar-fill" style="width:19.1%"></div></div><strong>74</strong></div>
+          <div class="bar-row"><span>从未消费</span><div class="bar-track"><div class="bar-fill" style="width:14.4%"></div></div><strong>56</strong></div>
+        </article>
+
+        <article class="chart-card">
+          <h3>实际消费支出</h3>
+          <div class="bar-row"><span>10–20元</span><div class="bar-track"><div class="bar-fill" style="width:37.4%"></div></div><strong>145</strong></div>
+          <div class="bar-row"><span>0–10元</span><div class="bar-track"><div class="bar-fill" style="width:27.6%"></div></div><strong>107</strong></div>
+          <div class="bar-row"><span>20–30元</span><div class="bar-track"><div class="bar-fill" style="width:21.6%"></div></div><strong>84</strong></div>
+          <div class="bar-row"><span>30元以上</span><div class="bar-track"><div class="bar-fill" style="width:13.4%"></div></div><strong>52</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section panel notice">
+      <strong>隐私说明：</strong>本页面只发布研究汇总指标，用于演示和项目汇报；不提供答卷列表、单份详情、respondent_id、completion_code、CSV 导出或任何可反查个体的数据。GitHub Pages 无法提供真正的服务器端登录保护，因此该页面采用隐藏路径、noindex 与不发布明细的方式降低风险。
+    </section>
+  </main>
+</body>
+</html>
